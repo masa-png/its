@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}"
+>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>課題作成</title>
+  </head>
+  <body>
+    <h1 class="mt-3">課題作成</h1>
+    <form th:action="@{/issues}" th:method="post" th:object="${issueForm}">
+      <div class="mb-3">
+        <label for="summaryInput" class="form-label">概要</label>
+        <input
+          type="text"
+          class="form-control"
+          id="summaryInput"
+          th:field="*{summary}"
+          th:classappend="${#fields.hasErrors('summary')} ? is-invalid"
+        />
+        <p
+          class="invalid-feedback"
+          th:if="${#fields.hasErrors('summary')}"
+          th:errors="*{summary}"
+        >
+          (error)
+        </p>
+      </div>
+      <div class="mb-3">
+        <label for="descriptionInput" class="form-label">詳細</label>
+        <textarea
+          class="form-control"
+          id="descriptionInput"
+          rows="10"
+          th:field="*{description}"
+          th:classappend="${#fields.hasErrors('description')} ? is-invalid"
+        ></textarea>
+        <p
+          class="invalid-feedback"
+          th:if="${#fields.hasErrors('description')}"
+          th:errors="*{description}"
+        >
+          (error)
+        </p>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary">作成</button>
+        <a href="./list.html" th:href="@{/issues}" class="btn btn-secondary"
+          >戻る</a
+        >
+      </div>
+    </form>
+  </body>
+</html>
