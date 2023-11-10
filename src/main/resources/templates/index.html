@@ -12,7 +12,10 @@
     <div>
       <ul>
         <li><a href="./issues/list.html" th:href="@{/issues}">課題一覧</a></li>
-        <li></li>
+        <li sec:authorize="hasAuthority('ADMIN')">
+          <a href="./users/list.html" th:href="@{/users}">ユーザー一覧</a>
+        </li>
+        <li><a href="./logout.html" th:href="@{/logout}">ログアウト</a></li>
       </ul>
     </div>
   </body>

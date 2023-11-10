@@ -11,4 +11,13 @@ public class indexController {
         return "index";
     }
 
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String showLogoutForm() {
+        return "logout";
+    }
 }
