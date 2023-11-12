@@ -18,10 +18,6 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // for h2-console
-        http.authorizeHttpRequests(authorize -> authorize.requestMatchers(antMatcher("/h2-console/**")).permitAll())
-                .csrf(csrf -> csrf.ignoringRequestMatchers(antMatcher("/h2-console/**")))
-                .headers(headers -> headers.disable());
 
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/login").permitAll()
