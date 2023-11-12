@@ -49,12 +49,11 @@ public class IssueController {
     }
 
     @GetMapping("/editForm/{issueId}")
-    public String showEditForm(@PathVariable("issueId") long issueId, @ModelAttribute IssueForm form, Model model) {
+    public String showEditForm(@PathVariable("issueId") long issueId, @ModelAttribute IssueForm form) {
         IssueEntity issueEntity = issueService.findById(issueId);
         form.setId(issueId);
         form.setSummary(issueEntity.getSummary());
         form.setDescription(issueEntity.getDescription());
-        model.addAttribute(form);
         return "issues/editForm";
     }
 
